@@ -60,6 +60,19 @@ This repository contains practical, real-world examples of Terraform built-in fu
     cd assignment1  # Or assignment2, assignment3, assignment4
     ```
 
+
+---
+
+### 5. Assignment 5: Environment Lookup
+* **Location:** `assignment5/`
+* **The Scenario:** Different environments (Dev vs Prod) require different server sizes (Cheap vs Powerful). Hardcoding values doesn't scale.
+* **The Logic:** We use `lookup()` to select a value from a map based on the environment name, with a safety default.
+
+| Input Environment | Map Config | Lookup Output |
+| :--- | :--- | :--- |
+| `"dev"` | `{dev="t2.micro", prod="m5.large"}` | `"t2.micro"` |
+| `"prod"` | `{dev="t2.micro", prod="m5.large"}` | `"m5.large"` |
+| `"unknown"` | `{dev="t2.micro", prod="m5.large"}` | `"t2.micro"` (Fallback) |
 3.  **Run Terraform:**
     ```bash
     terraform init
