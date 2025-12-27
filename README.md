@@ -78,3 +78,17 @@ This repository contains practical, real-world examples of Terraform built-in fu
     terraform init
     terraform apply -auto-approve
     ```
+
+
+---
+
+### 6. Assignment 6: Input Validation (Regex)
+* **Location:** `assignment6/`
+* **The Scenario:** To prevent high costs, we only want to allow `t2` or `t3` instances. We also want to prevent typos.
+* **The Logic:** We use `validation` blocks inside the variable. If the regex doesn't match, Terraform rejects the plan.
+
+| Input Variable | Regex Check `^t[2-3]\.` | Result |
+| :--- | :--- | :--- |
+| `"t2.micro"` | ✅ Match | **Allowed** |
+| `"m5.large"` | ❌ No Match | **Error: Invalid Value** |
+| `"t2"` | ❌ Matches Regex but fails Length check | **Error: Too Short** |
