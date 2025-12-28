@@ -92,3 +92,19 @@ This repository contains practical, real-world examples of Terraform built-in fu
 | `"t2.micro"` | ✅ Match | **Allowed** |
 | `"m5.large"` | ❌ No Match | **Error: Invalid Value** |
 | `"t2"` | ❌ Matches Regex but fails Length check | **Error: Too Short** |
+
+
+---
+
+### 7. Assignment 7: Security & Suffix Validation
+* **Location:** `assignment7/`
+* **The Scenario:** We need to enforce naming standards (must end in `_backup`) and protect credentials from appearing in logs.
+* **The Logic:**
+    * `endswith()`: Checks if the string has the correct suffix.
+    * `sensitive = true`: Masks variables in `terraform plan` and `output`.
+
+| Input Variable | Validation | Result |
+| :--- | :--- | :--- |
+| `"daily_data"` | `endswith(..., "_backup")` | ❌ **Error** |
+| `"daily_backup"` | `endswith(..., "_backup")` | ✅ **Allowed** |
+| `"SecretPass"` | `sensitive = true` | Displayed as `<sensitive>` |
