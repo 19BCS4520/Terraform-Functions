@@ -108,3 +108,18 @@ This repository contains practical, real-world examples of Terraform built-in fu
 | `"daily_data"` | `endswith(..., "_backup")` | ❌ **Error** |
 | `"daily_backup"` | `endswith(..., "_backup")` | ✅ **Allowed** |
 | `"SecretPass"` | `sensitive = true` | Displayed as `<sensitive>` |
+
+
+---
+
+### 9. Assignment 9: List Deduplication
+* **Location:** `assignment9/`
+* **The Scenario:** We need to deploy to a list of regions provided by a user + default regions. The list might contain duplicates, which breaks `for_each` loops.
+* **The Logic:**
+    * `concat()`: Merges two lists.
+    * `toset()`: Converts a list to a set, automatically removing duplicates.
+
+| Function | Input | Result |
+| :--- | :--- | :--- |
+| `concat()` | `["A"], ["B"]` | `["A", "B"]` |
+| `toset()` | `["A", "B", "A"]` | `["A", "B"]` (Unique) |
